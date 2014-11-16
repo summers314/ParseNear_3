@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.parseuser"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!--
+  IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
+  to match your app's package name + ".permission.C2D_MESSAGE".
+   
+   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+   
+    <permission
+        android:name="com.example.parseuser.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.parseuser.permission.C2D_MESSAGE" />
+    -->
+    <application
+        android:name="com.example.parseuser.Application"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.parseuser.ScreenActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.parse.PushService" />
+
+        <receiver android:name="com.parse.ParseBroadcastReceiver" />
+        <receiver android:name="com.example.parseuser.JePushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.example.parseuser.GOTMESSAGE" />
+                <action android:name="com.example.woofercontacts.SUBSCRIBE" />
+                <action android:name="com.example.woofercontacts.UNSUBSCRIBE" />
+                <action android:name="com.example.woofercontacts.REQUEST_CANCEL" />
+                <action android:name="com.example.woofercontacts.REQUEST_REJECT" />
+                <action android:name="com.example.woofercontacts.REQUEST_ACCEPTED" />
+                <action android:name="com.example.woofercontacts.REQUEST_ADD" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
